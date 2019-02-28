@@ -45,6 +45,7 @@ def load_data(filepath):
 def create_solution_file(slideshow, solution_path):
     file = open(solution_path, "w")
     file.write(str(len(slideshow.slides)))
+    file.write("\n")
     for slide in slideshow.slides:
         if slide.picture1.isHorizontal:
             line = "%d\n" % (slide.picture1.identifier)
