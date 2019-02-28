@@ -8,6 +8,7 @@ import os
 import parser
 from creator import Creator
 from slideshow import Slideshow
+from solution import score_solution
 
 
 def main():
@@ -33,8 +34,14 @@ def main():
         creator.create_first_slide()
         creator.fill_slideshow()
 
-        print(len(creator.slideshow.slides))
+        score = score_solution(creator.slideshow, pictures)
+        print("Score {}".format(score))
+        total_score += score
+
+        # print(len(creator.slideshow.slides))
         solution = parser.create_solution_file(creator.slideshow, solution_path + filename[:-4] + "_solution.txt")
+
+    print(total_score)
 
 
 if __name__ == '__main__':

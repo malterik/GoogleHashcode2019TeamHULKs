@@ -55,11 +55,9 @@ class Creator:
         print("created first slide")
 
     def fill_slideshow(self):
-        counter = 100
+        counter = 1000
         while (len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"]))) and counter > 0:
             counter = counter - 1
-            print(counter)
-            print(len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"])))
             union = set()
 
             if self.current_slide.picture1 is not None:
