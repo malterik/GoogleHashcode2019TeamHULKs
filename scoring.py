@@ -3,8 +3,10 @@
 
 import argparse
 
-from parser import load_problem, load_solution
-from simulate import score_solution
+from parser import load_problem
+from solution import create_solution_file
+from slideshow import Slideshow
+#  from simulate import score_solution
 
 
 def main():
@@ -17,10 +19,10 @@ def main():
     problem_path = args.problem
     solution_path = args.solution
 
-    city = load_problem(problem_path)
-    solution = load_solution(solution_path, city)
+    s = Slideshow()
+    solution = create_solution_file(s, solution_path)
 
-    print(score_solution(solution))
+    print(solution)
 
 
 
