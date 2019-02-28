@@ -43,5 +43,7 @@ class IO:
             # create picture and append it
             pictures.append(Picture(i, isHorizontal, tag_list))
 
+
         data['pictures'] = pictures
-        return data
+        return pictures
+        #return data
