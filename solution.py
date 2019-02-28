@@ -1,8 +1,8 @@
 from slideshow import Slideshow
 from slide import Slide
 import numpy as np
+
 def score_solution(slideshow, input_data):
-    print(input_data)
     total_score = 0
     for i,slide in enumerate(slideshow.slides):
         p1_tags=[]
@@ -24,6 +24,7 @@ def score_solution(slideshow, input_data):
         tags_in_1 = len(np.setdiff1d(p1_tags, p2_tags))
         tags_in_2 = len(np.setdiff1d(p2_tags, p1_tags))
         tempscore = min(common_tags, tags_in_1, tags_in_2)
+        total_score += tempscore
 
     return total_score
 

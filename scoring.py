@@ -33,5 +33,7 @@ def main():
     #  solution = create_solution_file(s, solution_path)
     score = score_solution(s, data)
 
+    print(score)
+
 if __name__ == '__main__':
     main()
