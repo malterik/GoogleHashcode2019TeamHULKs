@@ -17,7 +17,7 @@ def main():
 
     total_score = 0
     # arg_parser.add_argument("", help="Strategy name")
-    solution_path = "./solution/"
+    solution_path = "./solutions/"
 
     for filename in os.listdir("./problems"):
         slideshow = Slideshow()
