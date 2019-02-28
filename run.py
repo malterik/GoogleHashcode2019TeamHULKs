@@ -7,7 +7,7 @@ import os
 
 import parser
 from creator import Creator
-from Slideshow import Slideshow
+from slideshow import Slideshow
 
 
 def main():
