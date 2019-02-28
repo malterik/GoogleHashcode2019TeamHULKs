@@ -7,17 +7,17 @@ def score_solution(slideshow, input_data):
     for i,slide in enumerate(slideshow.slides):
         p1_tags=[]
         p2_tags=[]
-        if slide.picture2 == None: # horizontal image
-            p1_tags = input_data[slide.picture1].tags
+        if slide.picture1.isHorizontal: # horizontal image
+            p1_tags = input_data[slide.picture1.identifier].tags
         else:
-            p1_tags = list(set(input_data[slide.picture1].tags + input_data[slide.picture2].tags))
+            p1_tags = list(set(input_data[slide.picture1.identifier].tags + input_data[slide.picture2.identifier].tags))
 
         if i + 1 < len(slideshow.slides):
             slide2 = slideshow.slides[i + 1]
-            if slide2.picture2 == None: # horizontal image
-                p2_tags = input_data[slide2.picture1].tags
+            if slide2.picture1.isHorizontal: # horizontal image
+                p2_tags = input_data[slide2.picture1.identifier].tags
             else:
-                p2_tags = list(set(input_data[slide2.picture1].tags + input_data[slide2.picture2].tags))
+                p2_tags = list(set(input_data[slide2.picture1.identifier].tags + input_data[slide2.picture2.identifier].tags))
         else:
             continue
         common_tags = len(list(set(p1_tags).intersection(p2_tags)))
