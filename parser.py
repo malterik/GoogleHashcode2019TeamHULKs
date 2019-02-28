@@ -46,9 +46,9 @@ def create_solution_file(slideshow, solution_path):
     file = open(solution_path, "w")
     for slide in slideshow.slides:
         if slide.picture2 == None:
-            line = "%d\n" % (slide.picture1)
+            line = "%d\n" % (slide.picture1.identifier)
         else:
-            line = "%d %d\n" % (slide.picture1, slide.picture2)
+            line = "%d %d\n" % (slide.picture1.identifier, slide.picture2.identifier)
         file.write(line)
     file.close()
     return
