@@ -20,10 +20,6 @@ def score_solution(slideshow, input_data):
                 p2_tags = list(set(input_data[slide2.picture1].tags + input_data[slide2.picture2].tags))
         else:
             continue
-        print("p1_tags")
-        print(p1_tags)
-        print("p2_tags")
-        print(p2_tags)
         common_tags = len(list(set(p1_tags).intersection(p2_tags)))
         tags_in_1 = len(np.setdiff1d(p1_tags, p2_tags))
         tags_in_2 = len(np.setdiff1d(p2_tags, p1_tags))
