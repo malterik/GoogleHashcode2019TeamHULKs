@@ -8,10 +8,10 @@ def score_solution(slideshow):
 def create_solution_file(slideshow, solution_path):
     file = open(solution_path, "w")
     for slide in slideshow.slides:
-        if slide.Picture2 == none:
-            line = "%d\n" % (slide.Picture1)
+        if slide.picture2 == None:
+            line = "%d\n" % (slide.picture1)
         else:
-            line = "%d %d\n" % (slide.Picture1, slide.Picture2)
+            line = "%d %d\n" % (slide.picture1, slide.picture2)
         file.write(line)
     file.close()
     return
