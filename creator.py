@@ -9,8 +9,11 @@ class Creator:
 
     def __init__(self, slideshow: Slideshow):
         self.slideshow = slideshow
-        self.current_slide = 0
-        self.tag_sets : typing.Dict[str, set] = {}
+        self.current_slide = None
+        self.tag_sets : typing.Dict[str, set] = {
+                "horizontal": set(),
+                "vertical": set()
+                }
 
     def choose_next(self):
         pass
@@ -20,9 +23,64 @@ class Creator:
             if tag not in self.tag_sets:
                 self.add_set(tag)
             self.tag_sets[tag].add(picture)
+        if picture.isHorizontal:
+            self.tag_sets["horizontal"].add(picture)
+        else:
+            self.tag_sets["vertical"].add(picture)
 
     def add_set(self, tag: str):
         self.tag_sets[tag] = set()
 
+    def create_first_slide(self):
+        current_pic = None
+        if len(self.tag_sets["horizontal"]):
+            current_pic = self.tag_sets["horizontal"].pop()
+        else:
+            current_pic = self.tag_sets["vertical"].pop()
+
+        current_pic.pop_from_all_sets(self.tag_sets)
+
+        current_slide = Slide()
+
+        if current_pic.isHorizontal:
+            current_slide.add_picture(current_pic)
+        else:
+            current_slide.add_picture(current_pic)
+            second_image = self.tag_sets["vertical"].pop()
+            second_image.pop_from_all_sets(self.tag_sets)
+            current_slide.add_picture(second_image)
+
+        self.current_slide = current_slide
+        self.slideshow.add_slide(current_slide)
+        print("created first slide")
+
     def fill_slideshow(self):
-        pass
+        while (len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"]))):
+            print(len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"])))
+            union = set()
+
+            if self.current_slide.picture1 is not None:
+                for tag in self.current_slide.picture1.tags:
+                    union = self.tag_sets[tag].union(union)
+            if self.current_slide.picture2 is not None:
+                for tag in self.current_slide.picture2.tags:
+                    union = self.tag_sets[tag].union(union)
+
+            if len(union) == 0:
+                return
+            next_pic = union.pop()
+            next_pic.pop_from_all_sets(self.tag_sets)
+
+            next_slide = Slide()
+            next_slide.add_picture(next_pic)
+
+            if not next_pic.isHorizontal:
+                second_image = self.tag_sets["vertical"].pop()
+                second_image.pop_from_all_sets(self.tag_sets)
+                next_slide.add_picture(second_image)
+
+            self.slideshow.add_slide(next_slide)
+            self.current_slide = next_slide
+
+
+
