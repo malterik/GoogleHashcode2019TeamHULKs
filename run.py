@@ -16,33 +16,24 @@ def main():
                                          formatter_class=argparse.RawTextHelpFormatter)
 
     total_score = 0
-    arg_parser.add_argument("strategy_name", help="Strategy name")
-
-    slideshow = Slideshow()
-    creator = Creator(slideshow)
+    # arg_parser.add_argument("", help="Strategy name")
+    solution_path = "./solution"
 
     for filename in os.listdir("./problems"):
+        slideshow = Slideshow()
+        creator = Creator(slideshow)
+
         print("Load problem {}".format(filename))
-        pictures = parser.load_data(filename)
+        pictures = parser.load_data("./problems/" + filename)
 
         print("Add pictures to their sets")
         for pic in pictures:
             creator.add_picture_to_sets(pic)
 
+        creator.fill_slideshow()
 
+        solution = create_solution_file(slideshow, solution_path)
 
-    #     args = arg_parser.parse_args()
-    #     strategy_name = args.strategy_name
-
-    #     city = load_problem("./problems/%s" % filename)
-    #     solution = strategies.__dict__[strategy_name](city)
-
-    #     score = score_solution(solution)
-    #     print("Score %s: %s" % (filename, score))
-    #     save_solution("./solutions/%s_%s.out" % (filename, strategy_name), solution)
-    #     total_score = total_score + score
-
-    # print("TotalScore: %s" % total_score)
 
 if __name__ == '__main__':
     main()

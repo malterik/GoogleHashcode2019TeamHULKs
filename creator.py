@@ -24,4 +24,5 @@ class Creator:
     def add_set(self, tag: str):
         self.tag_sets[tag] = set()
 
-
+    def fill_slideshow(self):
+        pass
