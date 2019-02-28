@@ -46,7 +46,7 @@ def create_solution_file(slideshow, solution_path):
     file = open(solution_path, "w")
     file.write(str(len(slideshow.slides)))
     for slide in slideshow.slides:
-        if slide.picture2.isHorizontal:
+        if slide.picture1.isHorizontal:
             line = "%d\n" % (slide.picture1.identifier)
         else:
             line = "%d %d\n" % (slide.picture1.identifier, slide.picture2.identifier)
