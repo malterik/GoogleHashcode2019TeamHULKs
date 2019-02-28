@@ -1,6 +1,6 @@
 from picture import Picture
 
-def _read_file_line_by_line(self, filepath):
+def _read_file_line_by_line(filepath):
     """
     Read file line by line
     :param filepath:
@@ -14,13 +14,13 @@ def _read_file_line_by_line(self, filepath):
 
     return content
 
-def load_data(self, filepath):
+def load_data(filepath):
     """
     Loads data from file and return it in a structured manner
     :param filepath:
     :return:
     """
-    raw = self._read_file_line_by_line(filepath)
+    raw = _read_file_line_by_line(filepath)
     data = {}
     # read number of pictures
     data['N'] = int(raw[0])
