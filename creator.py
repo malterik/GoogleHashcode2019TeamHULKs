@@ -31,7 +31,13 @@ class Creator:
     def add_set(self, tag: str):
         self.tag_sets[tag] = set()
 
+    def delete_odd_vertical(self):
+        if len(self.tag_sets["vertical"]) % 2:
+            pic = self.tag_sets["vertical"].pop()
+            pic.pop_from_all_sets(self.tag_sets)
+
     def create_first_slide(self):
+        self.delete_odd_vertical()
         current_pic = None
         if len(self.tag_sets["horizontal"]):
             current_pic = self.tag_sets["horizontal"].pop()
@@ -57,7 +63,8 @@ class Creator:
     def fill_slideshow(self):
         counter = 1000
         while (len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"]))) and counter > 0:
-            counter = counter - 1
+            print(len(self.tag_sets["horizontal"].union(self.tag_sets["vertical"])))
+            # counter = counter - 1
             union = set()
 
             if self.current_slide.picture1 is not None:
