@@ -3,8 +3,7 @@
 
 import argparse
 
-from parser import IO
-from solution import create_solution_file
+from parser import load_data, create_solution_file
 from slideshow import Slideshow
 from slide import Slide
 #  from simulate import score_solution
@@ -20,8 +19,7 @@ def main():
     problem_path = args.problem
     solution_path = args.solution
     
-    reader = IO()
-    data = reader.load_data(problem_path)
+    data = load_data(problem_path)
     print(data)
     s = Slideshow()
     slide1 = Slide()
@@ -32,10 +30,6 @@ def main():
     s.add_slide(slide1)
     s.add_slide(slide2)
     solution = create_solution_file(s, solution_path)
-
-    print(solution)
-
-
 
 if __name__ == '__main__':
     main()
