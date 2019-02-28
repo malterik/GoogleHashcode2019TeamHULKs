@@ -17,7 +17,7 @@ def main():
 
     total_score = 0
     # arg_parser.add_argument("", help="Strategy name")
-    solution_path = "./solution"
+    solution_path = "./solution/"
 
     for filename in os.listdir("./problems"):
         slideshow = Slideshow()
@@ -32,7 +32,7 @@ def main():
 
         creator.fill_slideshow()
 
-        solution = parser.create_solution_file(slideshow, solution_path)
+        solution = parser.create_solution_file(slideshow, solution_path + filename[:-4] + "_solution.txt")
 
 
 if __name__ == '__main__':
