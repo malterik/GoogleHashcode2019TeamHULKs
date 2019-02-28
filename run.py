@@ -33,7 +33,7 @@ def main():
         creator.create_first_slide()
         creator.fill_slideshow()
 
-        print(creator.slideshow.slides)
+        print(len(creator.slideshow.slides))
         solution = parser.create_solution_file(creator.slideshow, solution_path + filename[:-4] + "_solution.txt")
 
 
