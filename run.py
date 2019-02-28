@@ -32,7 +32,7 @@ def main():
 
         creator.fill_slideshow()
 
-        solution = create_solution_file(slideshow, solution_path)
+        solution = parser.create_solution_file(slideshow, solution_path)
 
 
 if __name__ == '__main__':
