@@ -16,10 +16,10 @@ class Slide:
             return
 
         if self.picture1 is None:
-            self.picture1 = picture1
+            self.picture1 = picture
             return
         elif self.picture2 is None:
-            self.picture2 = picture2
+            self.picture2 = picture
             return
         raise Exception("No slots empty for picture")
 
