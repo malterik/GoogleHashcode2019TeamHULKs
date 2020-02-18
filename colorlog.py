@@ -23,7 +23,7 @@ class ColorLog(metaclass=Singleton):
 
     def __init__(self):
         self._log = logging.getLogger(" ")
-        formatter = logging.Formatter("[%(levelname)-8s] %(message)s")
+        formatter = logging.Formatter("[%(levelname)-5s] %(message)s")
         handler = logging.StreamHandler()
         handler.setFormatter(formatter)
         self._log.addHandler(handler)
