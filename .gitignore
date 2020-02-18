@@ -1,4 +1,6 @@
 .idea
+
+# ignore python related stuff
 __pycache__/
 *.py[cod]
 *$py.class
