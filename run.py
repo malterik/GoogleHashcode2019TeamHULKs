@@ -3,12 +3,17 @@
 
 import argparse
 import os
-
+import logging
+import glob
+import tqdm
+import time
 
 import parser
-from creator import Creator
-from slideshow import Slideshow
-from solution import score_solution
+import scoring
+from colorlog import ColorLog
+
+logger = ColorLog()
+logger.setLevel(logging.DEBUG)
 
 
 def main():
@@ -16,32 +21,43 @@ def main():
     arg_parser = argparse.ArgumentParser(description="Runs the hashcode solution",
                                          formatter_class=argparse.RawTextHelpFormatter)
 
-    total_score = 0
     # arg_parser.add_argument("", help="Strategy name")
-    solution_path = "./solutions/"
+    arg_parser.add_argument("--solution-path", default="./solutions/")
+    arg_parser.add_argument("--problem-path", default="./problems/")
 
-    for filename in os.listdir("./problems"):
-        slideshow = Slideshow()
-        creator = Creator(slideshow)
+    arg_parser.add_argument(
+        "problem", nargs="?", default="*", help="The problem name to score")
 
-        print("Load problem {}".format(filename))
-        pictures = parser.load_data("./problems/" + filename)
+    args = arg_parser.parse_args()
 
-        print("Add pictures to their sets")
-        for pic in pictures:
-            creator.add_picture_to_sets(pic)
+    solution_path = args.solution_path
+    problem_path = args.problem_path
 
-        creator.create_first_slide()
-        creator.fill_slideshow()
+    total_score = 0
 
-        score = score_solution(creator.slideshow, pictures)
-        print("Score {}".format(score))
+    problem_files = sorted(glob.glob(problem_path + args.problem))
+
+    if not problem_files:
+        logger.warning("No problem files found! Exiting...")
+        exit(0)
+
+    t = tqdm.tqdm(problem_files, postfix={"last": 0, "total": total_score})
+    for filepath in t:
+        basename = os.path.splitext(os.path.basename(filepath))[0]
+        t.set_description(basename)
+        problem_data = parser.load_data(filepath)
+
+        # compute solution
+        solution = "Solution!"
+        time.sleep(1)
+
+        score = scoring.score_solution(solution, problem_data)
         total_score += score
+        t.set_postfix(last = score, total = total_score)
+        parser.create_solution_file(
+            solution, solution_path + basename + "_solution.txt")
 
-        # print(len(creator.slideshow.slides))
-        solution = parser.create_solution_file(creator.slideshow, solution_path + filename[:-4] + "_solution.txt")
-
-    print(total_score)
+    logger.info("Total Score: {}".format(total_score))
 
 
 if __name__ == '__main__':
