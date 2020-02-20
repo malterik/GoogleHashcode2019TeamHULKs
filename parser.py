@@ -1,3 +1,4 @@
+from problem import *
 
 def _read_file_line_by_line(filepath: str):
     """
@@ -19,9 +20,31 @@ def load_data(filepath: str):
     :return:
     """
     raw = _read_file_line_by_line(filepath)
-    data = {}
-    data = raw
-    return data
+    first_line = raw[0].split(" ")
+    number_of_books = int(first_line[0])
+    number_of_libraries = int(first_line[1])
+    number_of_days = int(first_line[2])
+
+    book_scores = [0] * number_of_books
+    for i, book_score in enumerate(raw[1].split(" ")):
+        book_scores[i] = int(book_score)
+
+    libraries = []
+
+    i = 2
+    while (i < len(raw)):
+        row = raw[i].split(" ")
+        books_in_library = row[0]
+        days_to_sign_up = row[1]
+        books_per_day = row[2]
+        i += 1
+        row = raw[i].split(" ")
+        books_in_library = [int(book) for book in row]
+        i += 1
+        libraries.append(Library(books_in_library, days_to_sign_up, books_per_day))
+
+    problem = Problem(number_of_days, book_scores, libraries)
+    return problem
 
 
 def create_solution_file(solution, solution_path: str):
