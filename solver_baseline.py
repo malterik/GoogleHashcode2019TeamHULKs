@@ -12,7 +12,7 @@ class SolverBaseline():
         number_of_libraries = 0
         sorted_list = sorted(self.problem.libraries, key= lambda library : library.days_to_sign_up)
         for library in sorted_list:
-            solution_entries.append(SolutionEntry(library.idx, K, library.books[0:K]))
+            solution_entries.append(SolutionEntry(library.idx, len(library.books), library.books))
             number_of_libraries += 1
         return Solution(number_of_libraries, solution_entries)
 

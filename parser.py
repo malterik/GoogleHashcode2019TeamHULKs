@@ -39,7 +39,6 @@ def load_data(filepath: str):
         days_to_sign_up = int(row[1])
         books_per_day = int(row[2])
         idx = int((i - 2) / 2)
-        print("parser id: " + str(idx))
         i += 1
         row = raw[i].split(" ")
         books_in_library = sorted([int(book) for book in row], key=lambda book_id: -book_scores[book_id])
