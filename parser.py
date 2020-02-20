@@ -35,9 +35,9 @@ def load_data(filepath: str):
     i = 2
     while (i < len(raw)):
         row = raw[i].split(" ")
-        books_in_library = row[0]
-        days_to_sign_up = row[1]
-        books_per_day = row[2]
+        books_in_library = int(row[0])
+        days_to_sign_up = int(row[1])
+        books_per_day = int(row[2])
         i += 1
         row = raw[i].split(" ")
         books_in_library = [int(book) for book in row]
@@ -52,7 +52,7 @@ def create_solution_file(solution: Solution, solution_path: str):
     file = open(solution_path, "w")
     file.write(str(solution.number_of_libraries) + "\n")
     for entry in solution.libraries:
-        file.write(str(entry.library_id) + " " + str(entry.number_of_books) + "\n")
+        file.write(str(entry.id) + " " + str(entry.number_of_books) + "\n")
         for book in entry.books_to_scan:
             file.write(str(book) + " ")
         file.write("\n")

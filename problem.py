@@ -16,8 +16,8 @@ class Library:
 
 class Problem:
     number_of_days = 0
-    libraries = []
-    book_scores = []
+    libraries: ty.List[Library] = []
+    book_scores: ty.List[int] = []
 
     def __init__(self, number_of_days: int, book_scores: ty.List[int], libraries: ty.List[Library]):
         self.number_of_days = number_of_days

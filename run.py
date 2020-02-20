@@ -48,7 +48,6 @@ def main():
         basename = os.path.splitext(os.path.basename(filepath))[0]
         t.set_description(basename)
         problem_data = parser.load_data(filepath)
-        print(problem_data)
 
         # compute solution
         libraries = [SolutionEntry(1, 3, [5, 2, 3]), SolutionEntry(0, 5, [0, 1, 2, 3, 4])]
