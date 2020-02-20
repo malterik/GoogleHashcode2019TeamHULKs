@@ -34,7 +34,7 @@ def score_solution(solution: Solution, problem: Problem):
     for t in range(0, problem.number_of_days):
         if sim_state.active_sign_up_remaining == 0:
             if sim_state.active_sign_up_id is not None:
-                books_to_scan = solution.libraries[signed_up_counter].books_to_scan
+                books_to_scan = list(solution.libraries[signed_up_counter].books_to_scan)
                 books_per_day = problem.libraries[solution.libraries[signed_up_counter].id].books_per_day
                 sim_state.scanning_libraries.append(
                     ScanningLibrary(books_to_scan, books_per_day))

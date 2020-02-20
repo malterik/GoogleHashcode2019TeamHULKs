@@ -42,7 +42,7 @@ def load_data(filepath: str):
         print("parser id: " + str(idx))
         i += 1
         row = raw[i].split(" ")
-        books_in_library = [int(book) for book in row]
+        books_in_library = sorted([int(book) for book in row], key=lambda book_id: -book_scores[book_id])
         i += 1
         libraries.append(Library(books_in_library, days_to_sign_up, books_per_day, idx))
 
