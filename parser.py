@@ -35,6 +35,8 @@ def load_data(filepath: str):
     i = 2
     while (i < len(raw)):
         row = raw[i].split(" ")
+        if len(row) == 1:
+            break
         books_in_library = int(row[0])
         days_to_sign_up = int(row[1])
         books_per_day = int(row[2])
