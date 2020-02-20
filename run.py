@@ -11,6 +11,8 @@ import time
 import parser
 import scoring
 from colorlog import ColorLog
+from solution import *
+from problem import *
 
 logger = ColorLog()
 logger.setLevel(logging.DEBUG)
@@ -49,8 +51,8 @@ def main():
         print(problem_data)
 
         # compute solution
-        solution = "Solution!"
-        time.sleep(1)
+        libraries = [SolutionEntry(1, 3, [5, 2, 3]), SolutionEntry(0, 5, [0, 1, 2, 3, 4])]
+        solution = Solution(2, libraries)
 
         score = scoring.score_solution(solution, problem_data)
         total_score += score

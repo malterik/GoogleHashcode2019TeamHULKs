@@ -1,4 +1,5 @@
 from problem import *
+from solution import *
 
 def _read_file_line_by_line(filepath: str):
     """
@@ -47,8 +48,12 @@ def load_data(filepath: str):
     return problem
 
 
-def create_solution_file(solution, solution_path: str):
+def create_solution_file(solution: Solution, solution_path: str):
     file = open(solution_path, "w")
-    file.write("This is the solution:")
-    file.write(solution)
+    file.write(str(solution.number_of_libraries) + "\n")
+    for entry in solution.libraries:
+        file.write(str(entry.library_id) + " " + str(entry.number_of_books) + "\n")
+        for book in entry.books_to_scan:
+            file.write(str(book) + " ")
+        file.write("\n")
     file.close()
