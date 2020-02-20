@@ -38,11 +38,13 @@ def load_data(filepath: str):
         books_in_library = int(row[0])
         days_to_sign_up = int(row[1])
         books_per_day = int(row[2])
+        idx = int((i - 2) / 2)
+        print("parser id: " + str(idx))
         i += 1
         row = raw[i].split(" ")
         books_in_library = [int(book) for book in row]
         i += 1
-        libraries.append(Library(books_in_library, days_to_sign_up, books_per_day))
+        libraries.append(Library(books_in_library, days_to_sign_up, books_per_day, idx))
 
     problem = Problem(number_of_days, book_scores, libraries)
     return problem

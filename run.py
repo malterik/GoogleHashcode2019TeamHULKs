@@ -13,6 +13,7 @@ import scoring
 from colorlog import ColorLog
 from solution import *
 from problem import *
+from solver_baseline import *
 
 logger = ColorLog()
 logger.setLevel(logging.DEBUG)
@@ -49,9 +50,11 @@ def main():
         t.set_description(basename)
         problem_data = parser.load_data(filepath)
 
+        solver_baseline = SolverBaseline(problem_data)
+        solution = solver_baseline.solve()
         # compute solution
         libraries = [SolutionEntry(1, 3, [5, 2, 3]), SolutionEntry(0, 5, [0, 1, 2, 3, 4])]
-        solution = Solution(2, libraries)
+        solution2 = Solution(2, libraries)
 
         score = scoring.score_solution(solution, problem_data)
         total_score += score

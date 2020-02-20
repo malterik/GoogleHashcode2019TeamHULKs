@@ -4,14 +4,16 @@ class Library:
     books = []
     days_to_sign_up = 0
     books_per_day = 0
+    idx = 0
 
-    def __init__(self, books, days_to_sign_up, books_per_day):
+    def __init__(self, books, days_to_sign_up, books_per_day, idx):
         self.books = books
         self.days_to_sign_up = days_to_sign_up
         self.books_per_day = books_per_day
+        self.idx = idx
 
     def __repr__(self):
-        return "books: {}\n days_to_sign_up: {}\n books_per_day: {}".format(self.books, self.days_to_sign_up, self.books_per_day)
+        return "books: {}\n days_to_sign_up: {}\n books_per_day: {}\n idx: {}".format(self.books, self.days_to_sign_up, self.books_per_day, self.idx)
 
 
 class Problem:
