@@ -4,11 +4,13 @@ class Library:
     books = []
     days_to_sign_up = 0
     books_per_day = 0
+    id = 0
 
-    def __init__(self, books, days_to_sign_up, books_per_day):
+    def __init__(self, id: int, books, days_to_sign_up, books_per_day):
         self.books = books
         self.days_to_sign_up = days_to_sign_up
         self.books_per_day = books_per_day
+        self.id = id
 
     def __repr__(self):
         return "books: {}\n days_to_sign_up: {}\n books_per_day: {}".format(self.books, self.days_to_sign_up, self.books_per_day)

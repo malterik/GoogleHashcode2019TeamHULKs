@@ -33,6 +33,7 @@ def load_data(filepath: str):
     libraries = []
 
     i = 2
+    lib_id = 0
     while (i < len(raw)):
         row = raw[i].split(" ")
         if len(row) == 1:
@@ -44,7 +45,8 @@ def load_data(filepath: str):
         row = raw[i].split(" ")
         books_in_library = sorted([int(book) for book in row], key=lambda book_id: -book_scores[book_id])
         i += 1
-        libraries.append(Library(books_in_library, days_to_sign_up, books_per_day))
+        libraries.append(Library(lib_id, books_in_library, days_to_sign_up, books_per_day))
+        lib_id += 1
 
     problem = Problem(number_of_days, book_scores, libraries)
     return problem
